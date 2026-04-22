@@ -1,18 +1,48 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Georgia', serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
   color: #333;
 }
 header {
-  background-color: #c0392b;
+  background: linear-gradient(rgba(88, 66, 64, 0.785), rgba(88, 66, 64, 0.785)),
+              url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b');
+  background-size: cover;
+  background-position: center;
   color: white;
-  padding: 20px;
   text-align: center;
+  padding: 50px 20px;
+}
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+header h1 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+.intro {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #c0392b;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.cta-btn:hover {
+  background-color: #f1f1f1;
 }
 header p {
   font-style: italic;
+  font-size: 17px;
 }
 html {
   scroll-behavior: smooth;
@@ -35,33 +65,68 @@ nav a {
 }
 nav a:hover {
   color: #c0392b;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
 }
 section {
   background-color: white;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 section h2 {
   color: #c0392b;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  position: relative;
 }
 footer {
-  background-color: #333;
+  background-color: #2c3e50;
   color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 30px 20px;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-section {
+  flex: 1;
+  min-width: 180px;
+}
+.footer-section h4 {
+  margin-bottom: 10px;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+.footer-section .links {
+  display: flex;
+  gap: 15px; 
+  flex-wrap: wrap; 
+}
+.footer-section a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+.footer-section a:hover {
+  color: #e74c3c;
 }
 @media (max-width: 768px) {
-  nav ul {
+  .footer-container {
     flex-direction: column;
-    align-items: center;
+    text-align: center;
   }
-} 
+
+  .footer-section .links {
+    justify-content: center; 
+  }
+}
