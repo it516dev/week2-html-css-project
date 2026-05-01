@@ -14,6 +14,38 @@ header {
   text-align: center;
   padding: 50px 20px;
 }
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark section {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.dark nav {
+  background-color: #000;
+}
+
+.dark footer {
+  background-color: #111;
+}
+.dark input,
+.dark textarea {
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #bbb;
+}
+
+.dark a {
+  color: #f39c12;
+}
 .header-content {
   max-width: 800px;
   margin: 0 auto;
@@ -120,6 +152,85 @@ footer {
 .footer-section a:hover {
   color: #e74c3c;
 }
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.contact-form label {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #c0392b;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.2);
+}
+
+.contact-form button {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #a93226;
+}
+.success {
+  color: green;
+  margin-top: 10px;
+}
+
+#themeToggle {
+  position: relative;
+  padding: 5px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #c0392b;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#themeToggle:hover {
+  background-color: #a93226;
+  transform: scale(1.05);
+}
+
+.dark #themeToggle {
+  background-color: #f39c12;
+  color: #000;
+}
+
+.dark #themeToggle:hover {
+  background-color: #e67e22;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -129,4 +240,15 @@ footer {
   .footer-section .links {
     justify-content: center; 
   }
+   nav ul {
+    gap: 8px;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
 }
+
+
