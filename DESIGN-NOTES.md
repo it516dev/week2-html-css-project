@@ -44,6 +44,7 @@
 
 ## Component Tree
 
+```txt
 RootLayout
 ├── Header
 │   └── Nav
@@ -54,6 +55,7 @@ RootLayout
 │   ├── DestinationCard
 │   └── ContactForm (Client Component)
 └── Footer
+```
 
 ---
 
