@@ -1,29 +1,29 @@
 "use client";
 
-export default function ThemeToggle() {
+import { useEffect, useState } from 'react'
 
-  if (typeof window !== "undefined") {
-    const savedTheme = localStorage.getItem("theme");
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState(() => {
+      if (typeof window !== "undefined") {
+        return localStorage.getItem("theme") || "light";
+      }
 
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
-    }
-  }
+      return "light";
+    });
 
-  const handleToggle = () => {
-    document.body.classList.toggle("dark");
+    useEffect(() => {
+      document.body.classList.toggle(
+        "dark",
+        theme === "dark"
+      );
 
-    const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("theme", theme);
+    }, [theme]);
 
-    localStorage.setItem(
-      "theme",
-      isDark ? "dark" : "light"
-    );
-
-    const btn = document.getElementById("themeToggle");
-    if (btn) {
-      btn.innerText = isDark ? "🌙 Dark" : "☀️ Light";
-    }
+    const handleToggle = () => {
+      setTheme((prevTheme) =>
+        prevTheme === "dark" ? "light" : "dark"
+      );
   };
 
   return (
@@ -31,8 +31,11 @@ export default function ThemeToggle() {
       id="themeToggle"
       onClick={handleToggle}
       aria-label="Toggle dark mode"
+      suppressHydrationWarning
     >
-      ☀️ Light
+      {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
     </button>
   );
 }
+
+export default ThemeToggle
