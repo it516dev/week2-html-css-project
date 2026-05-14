@@ -6,13 +6,21 @@ body {
   color: #333;
 }
 header {
-  background: linear-gradient(rgba(88, 66, 64, 0.785), rgba(88, 66, 64, 0.785)),
-              url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b');
-  background-size: cover;
-  background-position: center;
+  position: relative;
   color: white;
   text-align: center;
   padding: 50px 20px;
+  overflow: hidden;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(88, 66, 64, 0.785),
+    rgba(88, 66, 64, 0.785)
+  );
+  z-index: -1;
 }
 .dark {
   background-color: #121212;
