@@ -1,14 +1,15 @@
 import DestinationCard from "@/components/DestinationCard";
+import WeatherPanel from "@/components/WeatherPanel";
 
 export default function Home() {
 
-  const destinations =[
+  const destinations = [
     {
       city: "Beijing",
       description: "Home of the Great Wall and the Forbidden City."
     },
     {
-      city: "Shangai",
+      city: "Shanghai",
       description: "A modern city with a famous waterfront called the Bund."
     },
     {
@@ -16,7 +17,7 @@ export default function Home() {
       description: "Known for giant pandas and spicy food."
     },
     {
-      city: "Xian",
+      city: "Xi'an",
       description: "Where you can see the famous Terracotta Army."
     }
   ];
@@ -46,27 +47,32 @@ export default function Home() {
 
         </section>
 
-      <section id="food">
-        <h2>Chinese Food</h2>
-        <p>Chinese food is very popular all over the world. Some dishes I want to try are:</p>
-        <ul>
-          <li>Peking Duck</li>
-          <li>Dumplings (Dim Sum)</li>
-          <li>Fried Rice</li>
-          <li>Hot Pot</li>
-        </ul>
-      </section>
+        <section id="weather">
+          <h2>Weather in China</h2>
+          <WeatherPanel />
+        </section>
 
-      <section id="tips">
-        <h2>Travel Tips</h2>
-        <p>If you are planning to visit China, here are a few things to keep in mind:</p>
-        <ul>
-          <li>You will need a visa before you travel.</li>
-          <li>The currency is the Chinese Yuan (CNY).</li>
-          <li>The best time to visit is spring or autumn.</li>
-          <li>Google and social media are blocked, so bring a VPN.</li>
-        </ul>
-      </section>
+        <section id="food">
+          <h2>Chinese Food</h2>
+          <p>Chinese food is very popular all over the world. Some dishes I want to try are:</p>
+          <ul>
+            <li>Peking Duck</li>
+            <li>Dumplings (Dim Sum)</li>
+            <li>Fried Rice</li>
+            <li>Hot Pot</li>
+          </ul>
+        </section>
+
+        <section id="tips">
+          <h2>Travel Tips</h2>
+          <p>If you are planning to visit China, here are a few things to keep in mind:</p>
+          <ul>
+            <li>You will need a visa before you travel.</li>
+            <li>The currency is the Chinese Yuan (CNY).</li>
+            <li>The best time to visit is spring or autumn.</li>
+            <li>Google and social media are blocked, so bring a VPN.</li>
+          </ul>
+        </section>
       </main>
     </>
   );

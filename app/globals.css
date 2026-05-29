@@ -276,6 +276,121 @@ footer {
   box-shadow: 0 2px 10px rgba(255,255,255,0.05);
 }
 
+#weather h3 {
+  color:#c0392b;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.city-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.city-buttons button {
+  padding: 8px 14px;
+  border: 1px solid #c0392b;
+  background: white;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  font-size: 14px;
+}
+
+.city-buttons button:hover {
+  background: #c0392b;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.city-buttons .active-city {
+  background: #c0392b;
+  color: white;
+}
+
+.weather-info {
+  margin-top: 10px;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.weather-info p {
+  margin: 0;
+  padding: 8px 10px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.weather-info p strong {
+  color: #333;
+}
+
+.refresh-btn {
+  margin-top: 18px;
+  width: 100%;
+  padding: 12px 18px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 500;
+}
+
+.refresh-btn:hover {
+  background-color: #a93226;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.weather-skeleton {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.skeleton {
+  background-color: #ddd;
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 60%;
+  margin-bottom: 15px;
+}
+
+.skeleton-line {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.skeleton-line.short {
+  width: 70%;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
 
 @media (max-width: 768px) {
   .destination-grid {
@@ -299,5 +414,17 @@ footer {
     font-size: 13px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
 

@@ -18,6 +18,10 @@ const Nav = () => {
             </li>
 
             <li>
+                <Link href="/#weather">Weather</Link>
+            </li>
+
+            <li>
                 <Link href="/#food">Food</Link>
             </li>
 

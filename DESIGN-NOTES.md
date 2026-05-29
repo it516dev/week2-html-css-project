@@ -310,4 +310,3 @@ The implementation relies primarily on CSS media queries rather than JavaScript 
 Animations and transitions were reduced globally using the `prefers-reduced-motion` media query.
 
 This approach improves accessibility while preserving overall interface responsiveness and usability.
-```
