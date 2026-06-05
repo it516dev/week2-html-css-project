@@ -16,11 +16,9 @@ export default async function MessagesPage({
       createdAt: "desc",
     },
     take: 20,
-  }) satisfies Awaited<ReturnType<typeof prisma.message.findMany>>;
+  });
 
   const showSuccess = params.success === "1";
-
-  type MessageItem = typeof messages extends (infer T)[] ? T : never;
 
   return (
     <main className="messages-page">
@@ -49,7 +47,7 @@ export default async function MessagesPage({
           </div>
         ) : (
           <div className="messages-grid">
-            {messages.map((message: MessageItem) => (
+            {messages.map((message) => (
               <article
                 key={message.id}
                 className="message-card"
