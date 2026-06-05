@@ -16,7 +16,7 @@ export default async function MessagesPage({
       createdAt: "desc",
     },
     take: 20,
-  }) as Awaited<ReturnType<typeof prisma.message.findMany>>;
+  }) satisfies Awaited<ReturnType<typeof prisma.message.findMany>>;
 
   const showSuccess = params.success === "1";
 
