@@ -310,3 +310,245 @@ The implementation relies primarily on CSS media queries rather than JavaScript 
 Animations and transitions were reduced globally using the `prefers-reduced-motion` media query.
 
 This approach improves accessibility while preserving overall interface responsiveness and usability.
+
+
+# Week 8: Database Integration & Server Actions
+
+## Feature 1: PostgreSQL Database Integration
+
+### What it does
+
+Stores contact form submissions permanently in a PostgreSQL database hosted on Neon.
+
+Instead of losing data after a page refresh or server restart, submitted messages are persisted in the database and can be retrieved later.
+
+### Why it matters
+
+Database persistence is a core requirement of modern web applications.
+
+This feature allows user-generated content to be stored reliably and accessed across sessions, devices, and deployments.
+
+### Technologies Used
+
+* PostgreSQL
+* Neon Serverless Database Hosting
+* Prisma ORM
+* Prisma PostgreSQL Driver Adapter
+
+### Database Schema
+
+The application uses the following Prisma model:
+
+```prisma
+model Message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+```
+
+### Architectural Reasoning
+
+Prisma was selected because it provides a type-safe interface for database operations while reducing the amount of SQL required within the application.
+
+Using Prisma improves maintainability, developer productivity, and data consistency throughout the project.
+
+---
+
+## Feature 2: Server Actions for Form Submission
+
+### What it does
+
+Processes contact form submissions entirely on the server using Next.js Server Actions.
+
+When a user submits the contact form, the form data is sent directly to a server function where validation and database operations occur.
+
+### Why it matters
+
+Server Actions simplify form handling by removing the need for custom API routes while keeping sensitive database operations securely on the server.
+
+This reduces application complexity and improves security.
+
+### Events
+
+* Form submit event triggers the Server Action
+* Server Action validates incoming form data
+* Database record is created
+* Cache is revalidated
+* User is redirected after successful submission
+
+### Server Action Flow
+
+```txt
+Contact Form
+      ↓
+Server Action
+      ↓
+Validation
+      ↓
+Prisma Create
+      ↓
+Database Storage
+      ↓
+Revalidate Cache
+      ↓
+Redirect User
+```
+
+### Architectural Reasoning
+
+Server Actions were chosen instead of traditional REST API endpoints because they provide a more direct integration between React components and server-side functionality.
+
+This approach reduces boilerplate code and keeps data processing logic close to the components that use it.
+
+---
+
+## Feature 3: Server-Side Form Validation
+
+### What it does
+
+Validates contact form data before storing it in the database.
+
+Validation checks include:
+
+* Required field validation
+* Email format validation
+* Phone number validation
+
+### Why it matters
+
+Server-side validation ensures data integrity and prevents invalid records from being stored in the database.
+
+Unlike client-side validation alone, server-side validation cannot be bypassed by users.
+
+### Validation Rules
+
+* Name cannot be empty
+* Phone number cannot be empty
+* Email cannot be empty
+* Message cannot be empty
+* Email must contain "@"
+* Phone number must contain at least 10 digits
+
+### Architectural Reasoning
+
+Validation logic was implemented inside the Server Action because all incoming requests must be validated regardless of how they are submitted.
+
+This guarantees consistent enforcement of business rules and improves application security.
+
+---
+
+## Feature 4: Dynamic Message Retrieval
+
+### What it does
+
+Retrieves contact form submissions directly from the PostgreSQL database and displays them on the Messages page.
+
+Messages are sorted by submission date with the newest messages displayed first.
+
+### Why it matters
+
+Dynamic database-driven content demonstrates full-stack functionality by connecting stored data to user-facing pages.
+
+The page automatically reflects newly submitted content without requiring manual updates.
+
+### Database Query
+
+Messages are retrieved using Prisma:
+
+```ts
+const messages = await prisma.message.findMany({
+  orderBy: {
+    createdAt: "desc",
+  },
+  take: 20,
+});
+```
+
+### Features
+
+* Displays latest submissions
+* Sorts by newest first
+* Shows submission date and time
+* Displays contact information
+* Provides empty-state messaging
+
+### Architectural Reasoning
+
+Server-side database queries were used because data retrieval occurs before page rendering.
+
+This improves performance, reduces client-side complexity, and ensures users always receive the latest database content.
+
+---
+
+## Feature 5: Cache Revalidation & Redirects
+
+### What it does
+
+Automatically refreshes database-driven pages after new messages are submitted.
+
+After storing a message:
+
+* Cache is revalidated
+* Messages page updates automatically
+* User receives confirmation through a success notification
+
+### Why it matters
+
+Without cache revalidation, users could see outdated content after submitting new data.
+
+Revalidation ensures database updates are reflected immediately.
+
+### Events
+
+* Successful database insertion
+* `revalidatePath()` refreshes cached content
+* `redirect()` navigates the user to the messages page
+
+### Architectural Reasoning
+
+Next.js caching improves application performance, but database updates require cache invalidation.
+
+Using `revalidatePath()` provides a controlled way to refresh affected pages while preserving overall application performance.
+
+---
+
+# Week 8 Architecture Overview
+
+## Data Flow
+
+```txt
+User
+  ↓
+Contact Form
+  ↓
+Server Action
+  ↓
+Validation
+  ↓
+Prisma ORM
+  ↓
+PostgreSQL Database
+  ↓
+Messages Page Query
+  ↓
+Rendered UI
+```
+
+## Technologies Added in Week 8
+
+* PostgreSQL
+* Neon
+* Prisma ORM
+* Prisma Client
+* Prisma PostgreSQL Adapter
+* Next.js Server Actions
+* Cache Revalidation
+* Server-Side Validation
+* Dynamic Database Queries
+
+```
+```
