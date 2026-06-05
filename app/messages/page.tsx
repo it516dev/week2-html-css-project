@@ -20,6 +20,8 @@ export default async function MessagesPage({
 
   const showSuccess = params.success === "1";
 
+  type MessageItem = typeof messages extends (infer T)[] ? T : never;
+
   return (
     <main className="messages-page">
       <section className="messages-section">
@@ -47,7 +49,7 @@ export default async function MessagesPage({
           </div>
         ) : (
           <div className="messages-grid">
-            {messages.map((message) => (
+            {messages.map((message: MessageItem) => (
               <article
                 key={message.id}
                 className="message-card"
