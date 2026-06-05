@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { Message } from "@prisma/client";
 
 interface MessagesPageProps {
   searchParams: Promise<{
@@ -12,7 +11,7 @@ export default async function MessagesPage({
 }: MessagesPageProps) {
   const params = await searchParams;
 
-  const messages: Message[] = await prisma.message.findMany({
+  const messages = await prisma.message.findMany({
     orderBy: {
       createdAt: "desc",
     },
