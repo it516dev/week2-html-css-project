@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
+type MessageItem = Awaited<ReturnType<typeof prisma.message.findMany>>[number];
+
 interface MessagesPageProps {
   searchParams: Promise<{
     success?: string;
@@ -47,7 +49,7 @@ export default async function MessagesPage({
           </div>
         ) : (
           <div className="messages-grid">
-            {messages.map((message) => (
+            {messages.map((message: MessageItem) => (
               <article
                 key={message.id}
                 className="message-card"
