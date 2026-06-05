@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import type { Message } from "@prisma/client";
+import { Message } from "@prisma/client";
 
 interface MessagesPageProps {
   searchParams: Promise<{
