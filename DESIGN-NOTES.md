@@ -312,7 +312,7 @@ Animations and transitions were reduced globally using the `prefers-reduced-moti
 This approach improves accessibility while preserving overall interface responsiveness and usability.
 
 
-# Week 8: Database Integration & Server Actions
+# Week 8: Database & Backend
 
 ## Feature 1: PostgreSQL Database Integration
 
@@ -328,6 +328,22 @@ Database persistence is a core requirement of modern web applications.
 
 This feature allows user-generated content to be stored reliably and accessed across sessions, devices, and deployments.
 
+### Provider Chosen
+
+The project uses PostgreSQL as its database provider.
+
+### Why PostgreSQL Was Chosen
+
+PostgreSQL was selected because it is:
+
+* Reliable and production-ready
+* Widely used in industry environments
+* Fully supported by Prisma ORM
+* Compatible with Neon cloud database hosting
+* Well suited for structured relational data
+
+The application stores contact form submissions using a consistent structure, making a relational database an appropriate choice.
+
 ### Technologies Used
 
 * PostgreSQL
@@ -335,9 +351,29 @@ This feature allows user-generated content to be stored reliably and accessed ac
 * Prisma ORM
 * Prisma PostgreSQL Driver Adapter
 
-### Database Schema
+### Prisma Configuration
 
-The application uses the following Prisma model:
+The Prisma datasource is configured as:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+}
+```
+
+### Architectural Reasoning
+
+Prisma was selected because it provides a type-safe interface for database operations while reducing the amount of SQL required within the application.
+
+Using Prisma improves maintainability, developer productivity, and data consistency throughout the project.
+
+---
+
+## Feature 2: Schema Definition & Database Design
+
+### Schema Definition
+
+The application uses the following Prisma schema:
 
 ```prisma
 model Message {
@@ -350,15 +386,36 @@ model Message {
 }
 ```
 
+### Schema Rationale
+
+The schema was designed around the information collected from the contact form.
+
+Field purposes include:
+
+* `id` uniquely identifies each message
+* `name` stores the sender's full name
+* `phone` stores the sender's phone number
+* `email` stores the sender's email address
+* `message` stores the submitted enquiry
+* `createdAt` records when the message was submitted
+
+### Why this Design Was Chosen
+
+An auto-incrementing primary key was selected because it provides a simple and efficient way to uniquely identify database records.
+
+The timestamp field allows messages to be sorted chronologically so the newest submissions can be displayed first.
+
+The schema remains intentionally simple because the application currently focuses on collecting and displaying contact messages rather than managing complex relationships between multiple database tables.
+
 ### Architectural Reasoning
 
-Prisma was selected because it provides a type-safe interface for database operations while reducing the amount of SQL required within the application.
+The schema closely mirrors the structure of the contact form.
 
-Using Prisma improves maintainability, developer productivity, and data consistency throughout the project.
+This approach minimizes unnecessary complexity while ensuring all user-submitted information can be stored and retrieved efficiently.
 
 ---
 
-## Feature 2: Server Actions for Form Submission
+## Feature 3: Server Actions for Form Submission
 
 ### What it does
 
@@ -406,7 +463,7 @@ This approach reduces boilerplate code and keeps data processing logic close to 
 
 ---
 
-## Feature 3: Server-Side Form Validation
+## Feature 4: Server-Side Form Validation
 
 ### What it does
 
@@ -441,7 +498,7 @@ This guarantees consistent enforcement of business rules and improves applicatio
 
 ---
 
-## Feature 4: Dynamic Message Retrieval
+## Feature 5: Dynamic Message Retrieval
 
 ### What it does
 
@@ -484,7 +541,7 @@ This improves performance, reduces client-side complexity, and ensures users alw
 
 ---
 
-## Feature 5: Cache Revalidation & Redirects
+## Feature 6: Cache Revalidation & Redirects
 
 ### What it does
 
@@ -550,5 +607,3 @@ Rendered UI
 * Server-Side Validation
 * Dynamic Database Queries
 
-```
-```

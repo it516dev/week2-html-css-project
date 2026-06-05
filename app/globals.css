@@ -486,6 +486,161 @@ footer {
   background-size: 200% 100%;
 }
 
+.messages-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.messages-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.messages-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.messages-header h1 {
+  margin: 0 0 10px;
+  color: #c0392b;
+  font-size: 20px;
+}
+
+.messages-header p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+}
+
+.messages-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.message-card {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 20px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.message-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.message-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.message-card-header h3 {
+  margin: 0;
+  color: #c0392b;
+  font-size: 18px;
+}
+
+.message-card-header span {
+  display: block;
+  margin-top: 4px;
+  color: #777;
+  font-size: 14px;
+}
+
+.message-date {
+  font-size: 13px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.message-phone {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  background: rgba(192, 57, 43, 0.08);
+  color: #c0392b;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.message-body {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state h3 {
+  color: #c0392b;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #666;
+  margin: 0;
+}
+
+.dark .messages-section {
+  background: #1e1e1e;
+}
+
+.dark .messages-header p {
+  color: #bdbdbd;
+}
+
+.dark .message-card {
+  background: #262626;
+  border-color: #3a3a3a;
+}
+
+.dark .message-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dark .message-card-header span {
+  color: #bdbdbd;
+}
+
+.dark .message-date {
+  color: #9e9e9e;
+}
+
+.dark .message-body {
+  color: #f1f1f1;
+}
+
+.dark .message-phone {
+  background: rgba(243, 156, 18, 0.15);
+  color: #f39c12;
+}
+
+.dark .empty-state p {
+  color: #bdbdbd;
+}
+
+.success-banner {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid #16a34a;
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+  font-weight: 500;
+}
+
 @keyframes pulse {
   0% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -516,6 +671,22 @@ footer {
 
   .city-buttons button {
     flex: 1 1 calc(50% - 10px);
+  }
+    .messages-section {
+    padding: 20px;
+  }
+
+  .messages-header h1 {
+    font-size: 26px;
+  }
+
+  .message-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .message-date {
+    white-space: normal;
   }
 
    nav ul {
