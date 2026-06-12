@@ -607,3 +607,147 @@ Rendered UI
 * Server-Side Validation
 * Dynamic Database Queries
 
+---
+
+# Week 9: Authentication, Security & Performance
+
+## Feature 1: User Authentication with Auth.js
+
+### What it does
+
+The application uses **Auth.js** with GitHub as the authentication provider to allow users to securely sign in before accessing protected resources.
+
+Authentication is session-based, allowing users to remain signed in while navigating the application and securely sign out when finished.
+
+### Why it matters
+
+Authentication ensures that sensitive information is only accessible to authorized users. Instead of allowing anonymous visitors to access protected content, the application verifies the user's identity before granting access.
+
+This improves security while providing a personalized user experience.
+
+### Authentication Flow
+
+```txt
+User
+   ↓
+Sign In Button
+   ↓
+GitHub Authentication
+   ↓
+Session Created
+   ↓
+Protected Resources Accessible
+```
+
+### Architectural Reasoning
+
+Auth.js was selected because it integrates seamlessly with Next.js App Router and Server Components. It provides secure session management while reducing the amount of authentication logic that must be implemented manually.
+
+---
+
+## Feature 2: Protected Messages Page
+
+### What it does
+
+The `/messages` page is protected using server-side authentication checks.
+
+Before rendering the page, the application verifies whether a valid authenticated session exists. If no session is found, the user is redirected to the sign-in page.
+
+### Why it matters
+
+The Messages page contains user-submitted contact information that should not be publicly accessible.
+
+Restricting access prevents unauthorized users from viewing stored data and demonstrates role-based access control principles.
+
+### Access Flow
+
+```txt
+User Requests /messages
+          ↓
+Authentication Check
+          ↓
+Authenticated?
+      ┌───────────┐
+      │           │
+     Yes         No
+      │           │
+Display Page   Redirect to Sign In
+```
+
+### Architectural Reasoning
+
+Authentication checks are performed on the server before rendering the page. This approach is more secure than relying solely on client-side protection because unauthorized users never receive the protected content.
+
+---
+
+## Feature 3: OWASP Security Mitigations
+
+### Mitigation 1: Broken Access Control Prevention
+
+The application prevents unauthorized access to protected resources by requiring authentication before displaying stored contact messages.
+
+Server-side session validation ensures that only authenticated users can access the `/messages` page.
+
+### Mitigation 2: Injection Prevention
+
+Database operations are performed using Prisma ORM rather than manually constructing SQL queries.
+
+Prisma automatically parameterizes database queries, significantly reducing the risk of SQL injection attacks. User input is also validated before being stored.
+
+### Why these mitigations matter
+
+Applying these OWASP security practices improves both the confidentiality and integrity of the application by protecting sensitive information and preventing malicious database manipulation.
+
+---
+
+## Feature 4: Performance and Optimization
+
+### What it does
+
+The application was analyzed using Lighthouse to evaluate performance, accessibility, best practices, and SEO.
+
+Based on the audit, performance optimizations were applied to improve the overall user experience.
+
+### Improvements Implemented
+
+* Optimized Next.js rendering
+* Server-side data fetching where appropriate
+* Efficient database queries using Prisma
+* Cache revalidation with `revalidatePath()`
+* Reusable component architecture to reduce duplication
+
+### Why it matters
+
+Performance optimization reduces loading times, improves responsiveness, and provides a better experience across desktop and mobile devices while following modern web development best practices.
+
+---
+
+# Week 9 Architecture Overview
+
+```txt
+User
+   ↓
+Authentication (Auth.js)
+   ↓
+Session Validation
+   ↓
+Protected Route (/messages)
+   ↓
+Prisma ORM
+   ↓
+PostgreSQL Database
+   ↓
+Server Component Rendering
+   ↓
+User Interface
+```
+
+## Technologies Added in Week 9
+
+* Auth.js
+* GitHub OAuth Authentication
+* Protected Server Routes
+* Session Management
+* OWASP Security Mitigations
+* Lighthouse Performance Auditing
+* Server-Side Authorization
