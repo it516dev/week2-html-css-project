@@ -126,7 +126,6 @@ nav a:hover {
   justify-content: space-between;
 }
 
-/* Brand */
 .brand {
   color: white;
   font-weight: bold;
@@ -134,7 +133,6 @@ nav a:hover {
   text-decoration: none;
 }
 
-/* Center links */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -154,7 +152,6 @@ nav a:hover {
   color: #c0392b;
 }
 
-/* Right side */
 .nav-actions {
   display: flex;
   align-items: center;
