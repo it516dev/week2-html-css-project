@@ -2,7 +2,7 @@
 
 # Security Measures Implemented
 
-## 1. Broken Access Control Prevention (OWASP Top 10 – A01)
+## OWASP A01:2021 – Broken Access Control
 
 The application uses **Auth.js** for user authentication and protects the `/messages` page from unauthorized access. Before displaying stored contact messages, the application checks whether a valid user session exists using:
 
@@ -18,7 +18,7 @@ If a user is not authenticated, they are redirected to the sign-in page instead 
 
 ---
 
-## 2. Injection Prevention (OWASP Top 10 – A03)
+## OWASP A03:2021 – Injection
 
 The application uses **Prisma ORM** to communicate with the PostgreSQL database instead of constructing SQL queries manually. New contact messages are stored using:
 

@@ -30,6 +30,9 @@ const Nav = () => {
             <li>
                 <Link href="/contact">Contact</Link>
             </li>
+            <li>
+                <Link href="/messages">Messages</Link>
+            </li>
         </ul>
 
         <div className="nav-actions">
