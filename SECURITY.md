@@ -4,7 +4,7 @@
 
 ## OWASP A01:2021 – Broken Access Control
 
-The application uses **Auth.js** for user authentication and protects the `/messages` page from unauthorized access. Before displaying stored contact messages, the application checks whether a valid user session exists using:
+The application implements **Auth.js** for authentication and enforces server-side access control on the `/messages` route. Before rendering protected content, the application verifies whether a valid user session exists using:
 
 ```ts
 const session = await auth();
@@ -14,13 +14,13 @@ if (!session?.user) {
 }
 ```
 
-If a user is not authenticated, they are redirected to the sign-in page instead of accessing protected data. This prevents unauthorized users from viewing sensitive information submitted through the contact form and mitigates the risk of Broken Access Control.
+If no authenticated session is present, the user is redirected to the sign-in page. This ensures that only authenticated users can access protected resources and prevents unauthorized access to sensitive data submitted through the contact form. This mitigation reduces the risk of broken access control and session-based access bypass attacks.
 
 ---
 
 ## OWASP A03:2021 – Injection
 
-The application uses **Prisma ORM** to communicate with the PostgreSQL database instead of constructing SQL queries manually. New contact messages are stored using:
+The application uses **Prisma ORM** for all database operations with PostgreSQL, eliminating the need for manual SQL query construction. Contact form submissions are stored using Prisma’s safe query builder:
 
 ```ts
 await prisma.message.create({
@@ -33,15 +33,15 @@ await prisma.message.create({
 });
 ```
 
-Prisma automatically parameterizes database queries, reducing the risk of SQL Injection attacks that could occur if malicious input were concatenated into raw SQL statements. User input is also validated before being stored in the database.
+Prisma automatically parameterizes all queries, preventing SQL injection vulnerabilities that could occur if malicious input were injected into raw SQL statements. No unsafe raw SQL methods (such as `queryRawUnsafe`) are used in the application. Additionally, user input is validated before being persisted to the database, further reducing injection risk.
 
 ---
 
-# Summary
+## Summary
 
-The project implements two important OWASP security mitigations:
+The project implements two OWASP Top 10 security mitigations:
 
-* **Broken Access Control Prevention** through authenticated access to protected pages using Auth.js.
-* **Injection Prevention** through the use of Prisma ORM and server-side input validation before database operations.
+* **A01 Broken Access Control** through server-side authentication checks using Auth.js to restrict access to protected routes.
+* **A03 Injection** through Prisma ORM parameterized queries and avoidance of unsafe SQL execution patterns.
 
-These measures improve the confidentiality and integrity of the application while following secure web development practices.
+These measures strengthen the confidentiality and integrity of the application and follow modern secure web development best practices.
